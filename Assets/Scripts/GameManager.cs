@@ -23,7 +23,10 @@ public class GameManager : MonoBehaviour
     #endregion
 
     public List<BallData> BallDataList = new();
+    public List<BrickData> BrickDataList = new();
     public Ball CurrentBall;
+    public Vector2 GridSize;
+    public Vector2 BrickSize;
 
     private void Start()
     {
@@ -32,6 +35,7 @@ public class GameManager : MonoBehaviour
 
     public void LaunchLevel()
     {
+        InstantiateBricks();
         InstantiateNewBall();
     }
 
@@ -50,6 +54,18 @@ public class GameManager : MonoBehaviour
     public void InstantiateNewBall()
     {
         CurrentBall = Instantiate(BallDataList[0].BallGameObject);
+        CurrentBall.SetupBall();
+    }
 
+    public void InstantiateBricks()
+    {
+        for (int i = 0; i < GridSize.x; i++)
+        {
+            for (int j = 0; j < GridSize.y; j++)
+            {
+                Brick brick = Instantiate(BrickDataList[0].BrickGameObject);
+                brick.transform.position = new Vector3((i - GridSize.x / 2) * BrickSize.x, (j - GridSize.y / 2) * BrickSize.y, 0);
+            }
+        }
     }
 }

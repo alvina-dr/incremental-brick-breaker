@@ -9,10 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1aff277f41e7bfe4ba60b235244d1af5, type: 3}
-  m_Name: BD_Basic
+  m_Script: {fileID: 11500000, guid: 286c67b4ddefee24995d8bf7abb6490f, type: 3}
+  m_Name: BrickData_Basic
   m_EditorClassIdentifier: 
-  Speed: 10
-  Damage: 1
-  Health: 3
-  BallGameObject: {fileID: 1389998571240422716, guid: 7a34135e70e46344ea486cfd36a2cc2e, type: 3}
+  BrickGameObject: {fileID: 7470134331874782059, guid: 7e51f62882477bc499ed0218cf3dea8c, type: 3}

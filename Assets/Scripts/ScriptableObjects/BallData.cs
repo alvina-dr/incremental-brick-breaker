@@ -4,5 +4,7 @@ using UnityEngine;
 public class BallData : ScriptableObject
 {
     public float Speed;
+    public int Damage;
+    public int Health;
     public Ball BallGameObject;
 }
