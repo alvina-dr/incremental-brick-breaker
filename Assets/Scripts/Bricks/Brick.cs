@@ -3,18 +3,42 @@ using UnityEngine;
 
 public class Brick : MonoBehaviour
 {
-    private int currentHealth;
+    public BrickData BrickData;
+    private int _currentHealth;
 
     [SerializeField]
     private Collider2D _collider;
+    [SerializeField]
+    private SpriteRenderer _spriteRenderer;
+
+    public virtual void Setup()
+    {
+        _currentHealth = BrickData.Health;
+    }
 
     public virtual void Damage(int _damage)
     {
-        currentHealth -= _damage;
-        if (currentHealth <= 0)
+        _currentHealth -= _damage;
+        DamageFeedback();
+
+        if (_currentHealth <= 0)
         {
             Death();
         }
+    }
+
+    public void DamageFeedback()
+    {
+        _spriteRenderer.color = Color.red;
+        DOVirtual.DelayedCall(.1f, () => 
+        {
+            _spriteRenderer.color = Color.white;
+        });
+
+        GameManager.Instance.AddScore(BrickData.DestroyPoints);
+        UI_TextPopper textPopper = Instantiate(GameManager.Instance.UIManager.TextPopperPrefab, GameManager.Instance.UIManager.transform);
+        textPopper.transform.position = Camera.main.WorldToScreenPoint(transform.position);
+        textPopper.PopText(BrickData.DestroyPoints.ToString());
     }
 
     public virtual void Death()
@@ -24,7 +48,6 @@ public class Brick : MonoBehaviour
         {
             transform.DOScale(0, .15f).OnComplete(() =>
             {
-                //GPCtrl.Instance.AddScore(PointsForDestroying);
                 Destroy(gameObject);
             });
         });

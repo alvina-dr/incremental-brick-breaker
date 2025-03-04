@@ -6,4 +6,9 @@ public class PlayerInputManager : MonoBehaviour
     {
         GameManager.Instance.ShootBall();
     }
+
+    public void OnCrouch()
+    {
+        GameManager.Instance.BallDataList[0].Health++;
+    }
 }

@@ -133,7 +133,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15a749316d5e7af4da2dbc38f96ec74b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  BrickData: {fileID: 11400000, guid: b45988a9f76d9134b8103a51ae31689c, type: 2}
   _collider: {fileID: 4593926853346351957}
+  _spriteRenderer: {fileID: 3646693032096918645}
 --- !u!61 &4593926853346351957
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -178,5 +180,5 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 2, y: 1}
   m_EdgeRadius: 0
