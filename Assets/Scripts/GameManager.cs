@@ -30,9 +30,8 @@ public class GameManager : MonoBehaviour
     public Ball CurrentBall;
     public Vector2 GridSize;
     public Vector2 BrickSize;
-    [ReadOnly]
-    public int CurrentPoints;
-
+    [ReadOnly] public int CurrentScore;
+    [ReadOnly] public List<Brick> BrickList = new();
     public UIManager UIManager;
     
     private void Start()
@@ -51,7 +50,7 @@ public class GameManager : MonoBehaviour
             BrickDataList[i].Reset();
         }
 
-        UIManager.ScoreText.SetTextValue(CurrentPoints.ToString());
+        UIManager.ScoreText.SetTextValue(CurrentScore.ToString());
 
         LaunchLevel();
     }
@@ -79,6 +78,11 @@ public class GameManager : MonoBehaviour
         int randomIndex = Random.Range(0, BallDataList.Count);
         CurrentBall = Instantiate(BallDataList[randomIndex].BallGameObject);
         CurrentBall.SetupBall();
+
+        if (GeneralData.AutomaticShoot)
+        {
+            ShootBall();
+        }
     }
 
     public void InstantiateBricks()
@@ -89,13 +93,29 @@ public class GameManager : MonoBehaviour
             {
                 Brick brick = Instantiate(BrickDataList[0].BrickGameObject);
                 brick.transform.position = new Vector3((i - GridSize.x / 2) * BrickSize.x + BrickSize.x / 2, (j - GridSize.y / 2) * BrickSize.y + BrickSize.y / 2, 0);
+                BrickList.Add(brick);
             }
         }
     }
 
     public void AddScore(int points)
     {
-        CurrentPoints += points;
-        UIManager.ScoreText.SetTextValue(CurrentPoints.ToString());
+        CurrentScore += points;
+        UIManager.ScoreText.SetTextValue(CurrentScore.ToString() + "$");
+        UIManager.UpgradeMenu.UpdateMenu();
+    }
+
+    public void SubstractScore(int points)
+    {
+        CurrentScore -= points;
+        UIManager.ScoreText.SetTextValue(CurrentScore.ToString() + "$");
+        UIManager.UpgradeMenu.UpdateMenu();
+    }
+
+    public void CheckEndLevel()
+    {
+        if (BrickList.Count > 0) return;
+
+        InstantiateBricks();
     }
 }

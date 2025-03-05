@@ -36,9 +36,9 @@ public class Brick : MonoBehaviour
         });
 
         GameManager.Instance.AddScore(BrickData.DestroyPoints);
-        UI_TextPopper textPopper = Instantiate(GameManager.Instance.UIManager.TextPopperPrefab, GameManager.Instance.UIManager.transform);
+        UI_TextPopper textPopper = Instantiate(GameManager.Instance.UIManager.TextPopperPrefab, GameManager.Instance.UIManager.ScoreTextTransformParent);
         textPopper.transform.position = Camera.main.WorldToScreenPoint(transform.position);
-        textPopper.PopText(BrickData.DestroyPoints.ToString());
+        textPopper.PopText(BrickData.DestroyPoints.ToString() + "$");
     }
 
     public virtual void Death()
@@ -48,6 +48,8 @@ public class Brick : MonoBehaviour
         {
             transform.DOScale(0, .15f).OnComplete(() =>
             {
+                GameManager.Instance.BrickList.Remove(this);
+                GameManager.Instance.CheckEndLevel();
                 Destroy(gameObject);
             });
         });

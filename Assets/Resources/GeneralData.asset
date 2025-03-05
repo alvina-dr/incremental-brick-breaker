@@ -14,3 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _initialSpawnFrequency: 1
   SpawnFrequency: 0
+  _initialMovingSpeedMultiplier: 1
+  MovingSpeedMultiplier: 0

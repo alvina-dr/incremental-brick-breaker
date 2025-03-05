@@ -6,11 +6,14 @@ public class UI_TextPopper : MonoBehaviour
 {
     [SerializeField]
     private TextMeshProUGUI TextMeshUI;
+    [SerializeField]
+    private TextMeshProUGUI TextMeshUIBis;
 
     public void PopText(string text)
     {
         transform.localScale = Vector3.zero;
         TextMeshUI.text = text;
+        TextMeshUIBis.text = text;
         transform.DOShakeRotation(.3f, 1, 5, 10);
         Sequence textAnimation = DOTween.Sequence();
         textAnimation.Append(transform.DOScale(1.3f, .05f));
@@ -20,5 +23,10 @@ public class UI_TextPopper : MonoBehaviour
         {
             Destroy(gameObject);
         });
+    }
+
+    private void OnDestroy()
+    {
+        transform.DOKill();
     }
 }

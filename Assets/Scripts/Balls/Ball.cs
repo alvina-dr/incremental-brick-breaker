@@ -22,7 +22,7 @@ public class Ball : MonoBehaviour
         //BallData.Speed *= GPCtrl.Instance.GeneralData.ballSpeedUpgrade;
         _collider.enabled = true;
         _rigibody.bodyType = RigidbodyType2D.Dynamic;
-        _rigibody.AddForce(_direction.normalized * BallData.Speed);
+        _rigibody.AddForce(_direction.normalized * BallData.Speed * GameManager.Instance.GeneralData.MovingSpeedMultiplier);
         //paradeCollider.enabled = true;
     }
 
