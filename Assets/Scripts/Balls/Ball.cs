@@ -56,6 +56,8 @@ public class Ball : MonoBehaviour
     public virtual void Death()
     {
         _collider.enabled = false;
+        GameManager.Instance.BallList.Remove(this);
+
         transform.DOScale(1.3f, .05f).OnComplete(() =>
         {
             transform.DOScale(0, .15f).OnComplete(() =>

@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class PlayerInputManager : MonoBehaviour
 {
+    [SerializeField] private GameObject _upgradeMenuGameObject;   
+
     public void OnAttack()
     {
         GameManager.Instance.ShootBall();
@@ -9,6 +11,14 @@ public class PlayerInputManager : MonoBehaviour
 
     public void OnCrouch()
     {
-        GameManager.Instance.BallDataList[0].Health++;
+        if (_upgradeMenuGameObject.activeSelf)
+        {
+            _upgradeMenuGameObject.gameObject.SetActive(false);
+        }
+        else
+        {
+            GameManager.Instance.UIManager.UpgradeMenu.OpenMenu();
+            _upgradeMenuGameObject.gameObject.SetActive(true);
+        }
     }
 }

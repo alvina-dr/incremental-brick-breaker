@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1aff277f41e7bfe4ba60b235244d1af5, type: 3}
   m_Name: BD_Basic
   m_EditorClassIdentifier: 
-  _initialSpeed: 3
+  _initialSpeed: 4
   Speed: 3
   _initialDamage: 1
   Damage: 1
   _initialHealth: 3
-  Health: 1
+  Health: 3
   BallGameObject: {fileID: 1389998571240422716, guid: 7a34135e70e46344ea486cfd36a2cc2e, type: 3}

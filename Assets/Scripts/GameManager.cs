@@ -31,6 +31,7 @@ public class GameManager : MonoBehaviour
     public Vector2 GridSize;
     public Vector2 BrickSize;
     [ReadOnly] public int CurrentScore;
+    [ReadOnly] public List<Ball> BallList = new();
     [ReadOnly] public List<Brick> BrickList = new();
     public UIManager UIManager;
     
@@ -78,6 +79,7 @@ public class GameManager : MonoBehaviour
         int randomIndex = Random.Range(0, BallDataList.Count);
         CurrentBall = Instantiate(BallDataList[randomIndex].BallGameObject);
         CurrentBall.SetupBall();
+        BallList.Add(CurrentBall);
 
         if (GeneralData.AutomaticShoot)
         {
@@ -115,6 +117,11 @@ public class GameManager : MonoBehaviour
     public void CheckEndLevel()
     {
         if (BrickList.Count > 0) return;
+
+        for (int i = 0; i < BallList.Count; i++)
+        {
+            Destroy(BallList[i].gameObject);
+        }
 
         InstantiateBricks();
     }
