@@ -95,6 +95,7 @@ public class GameManager : MonoBehaviour
             {
                 Brick brick = Instantiate(BrickDataList[0].BrickGameObject);
                 brick.transform.position = new Vector3((i - GridSize.x / 2) * BrickSize.x + BrickSize.x / 2, (j - GridSize.y / 2) * BrickSize.y + BrickSize.y / 2, 0);
+                brick.Setup();
                 BrickList.Add(brick);
             }
         }

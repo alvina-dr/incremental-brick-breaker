@@ -19,7 +19,6 @@ public class Brick : MonoBehaviour
     public virtual void Damage(int _damage)
     {
         _currentHealth -= _damage;
-        Debug.Log("damage : " + _currentHealth);
         DamageFeedback();
 
         if (_currentHealth <= 0)

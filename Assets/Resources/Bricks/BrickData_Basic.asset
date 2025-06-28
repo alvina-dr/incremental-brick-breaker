@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 286c67b4ddefee24995d8bf7abb6490f, type: 3}
   m_Name: BrickData_Basic
   m_EditorClassIdentifier: 
-  _initializeHealth: 5
-  Health: 1
+  _initializeHealth: 1
+  Health: 5
   _initializeDestroyPoints: 100
   DestroyPoints: 100
   BrickGameObject: {fileID: 7470134331874782059, guid: 7e51f62882477bc499ed0218cf3dea8c, type: 3}
